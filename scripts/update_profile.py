@@ -154,10 +154,11 @@ def render_activity(days, today, stamp, mobile=False):
         count = recent[day.isoformat()]
         level = 0 if count == 0 else min(4, 1 + (count-1)//3)
         parts.append(f'<rect x="{x:.2f}" y="{y}" width="11.5" height="11.5" rx="2" fill="{palette[level]}"><title>{day.isoformat()}: {count} Beiträge</title></rect>')
+    day_word = "Tag" if current == 1 else "Tage"
     if mobile:
-        parts += [text(24, 331, "Kalender: letzte 26 Wochen", 12, MUTED), text(24, 355, f"Stand {stamp} / Serie: {current} Tage", 12, MUTED)]
+        parts += [text(24, 331, "Kalender: letzte 26 Wochen", 12, MUTED), text(24, 355, f"Stand {stamp} / Serie: {current} {day_word}", 12, MUTED)]
     else:
-        parts += [text(32, 334, f"Aktuelle Serie: {current} Tage", 13, MUTED), text(806, 334, f"Stand {stamp}", 12, MUTED, mono=True, anchor="end")]
+        parts += [text(32, 334, f"Aktuelle Serie: {current} {day_word}", 13, MUTED), text(806, 334, f"Stand {stamp}", 12, MUTED, mono=True, anchor="end")]
     return canvas(420 if mobile else 840, 378 if mobile else 360, "GitHub-Aktivität der letzten 365 Tage", f'{sum(recent.values())} Beiträge an {active} Tagen; längste Serie {best} Tage; aktuelle Serie {current} Tage. Nur öffentlich angezeigte Kalenderdaten.', parts)
 
 
@@ -197,3 +198,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
