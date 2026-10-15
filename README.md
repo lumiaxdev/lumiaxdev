@@ -1,67 +1,49 @@
 <div align="center">
-<h1>Hallo 👋, ich bin Paul!</h1>
-<h3>Leidenschaftlicher Entwickler | Minecraft Plugin Creator | Software Engineer</h3>
+
+<p><strong>PAUL · LUMIAXDEV</strong></p>
+
+<h1>Hallo, ich bin Paul.</h1>
+
+<p>Java &amp; Kotlin · Konsolenanwendungen · Minecraft-Server-Systeme</p>
 
 <p>
-🔭 Arbeite aktuell an <strong>Minecraft Server-Systemen</strong> und <strong>Mobile Applications</strong><br>
-🌱 Lerne gerade <strong>SwiftUI</strong> und <strong>Flutter</strong> für Cross-Platform Development<br>
-💻 Spezialisiert auf <strong>Java-Entwicklung</strong>, <strong>Debugging</strong> und <strong>objektorientierte Programmierung</strong><br>
+<a href="https://github.com/lumiaxdev/cloud">Eigenes Projekt</a> &nbsp;·&nbsp;
+<a href="https://github.com/lumiaxdev?tab=repositories">Alle Repositories</a>
 </p>
 
 </div>
 
 ---
 
-<h2 align="center">🛠️ Technologien & Tools</h2>
+Ich entwickle mit **Java und Kotlin** und interessiere mich für Minecraft-Server-Systeme. In meinem öffentlichen Code findest du unter anderem Bausteine für Konsolenanwendungen, Command-Verarbeitung und JSON-Konfiguration.
 
-<h3 align="center">Programmiersprachen</h3>
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=java,kotlin,swift,dart,js,html,css" />
-</p>
+## Aus meinem Code
 
-<h3 align="center">Frameworks & Libraries</h3>
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=flutter,nodejs,apple,bootstrap" />
-</p>
+### [cloud](https://github.com/lumiaxdev/cloud)
 
-<h3 align="center">Entwicklungsumgebung</h3>
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=vscode,idea,eclipse,git,github" />
-</p>
+Ein früher Java-/Kotlin-Prototyp mit drei Modulen: einer gemeinsamen API, einer JSON-Bibliothek und einem Konsolen-Launcher.
 
-<h3 align="center">Datenbanken & Build Tools</h3>
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=mysql,maven,gradle,npm" />
-</p>
+| Baustein | Einblick |
+| :--- | :--- |
+| **API** | Command-Annotationen, Konsolenschnittstellen und Logging |
+| **JSON** | Konfiguration und Serialisierung mit Kotlin und Gson |
+| **Launcher** | Befehlseingabe, Autovervollständigung und Setup-Dialoge |
 
----
+**Java · Kotlin · Maven · Gson · JLine**
 
+[Projekt ansehen →](https://github.com/lumiaxdev/cloud#readme)
 
-<h2 align="center">📊 GitHub Statistiken</h2>
+## Öffentliche Forks
 
-<div align="center">
+Die folgenden Repositories sind Forks bestehender Open-Source-Projekte. Die Links zum Ursprung führen zu den jeweiligen Autoren und der Originaldokumentation.
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=paul-development&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&locale=de"/>
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=paul-development&layout=compact&theme=tokyonight&locale=de"/>
-
-</div>
-
-<div align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=paul-development&theme=tokyonight&locale=de" alt="paul-development" />
-
-</div>
+| Repository | Thema | Ursprung |
+| :--- | :--- | :--- |
+| [new-swapper](https://github.com/lumiaxdev/new-swapper) | VelocityRL: Anpassungen für Rocket League | [bitsfdb/VelocityRL](https://github.com/bitsfdb/VelocityRL) |
+| [swot](https://github.com/lumiaxdev/swot) | Verzeichnis von Bildungsdomains für akademische Lizenzen | [JetBrains/swot](https://github.com/JetBrains/swot) |
 
 ---
 
-<h2 align="center">🤝 Kontakt & Social Media</h2>
-
-<div align="center">
-
-[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/472788113501061141)
-[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paul-development)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](DEIN-LINKEDIN-PROFIL)
-
-</div>
-
+<p align="center">
+  <a href="https://github.com/lumiaxdev">github.com/lumiaxdev</a>
+</p>
