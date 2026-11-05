@@ -59,40 +59,63 @@ function schnuppe(id, x, y, dx, dy, takt, start, farbe) {
 }
 
 /* ---------------------------------------------------------------- Kopf */
+// Ohne das gerenderte Banner (das hat Paul am 05.11.2026 selbst aus der README
+// genommen): ein Sternenhimmel über einem Horizont mit Lichtkante, darüber
+// der Name, über den ein Mint-Glanz läuft.
 function kopf() {
   const z = zufall(7);
-  const bild = daten(A("banner.webp"), "image/webp");
-  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-label="LUMIAXDEV — Hey, ich bin Paul. Java, Kotlin, Minecraft.">
+  const B = 1200;
+  const H = 380;
+  const name = "lumiaxdev";
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${B} ${H}" width="${B}" height="${H}" role="img" aria-label="lumiaxdev — Hey, ich bin Paul. Java, Kotlin, Minecraft, Logsy Network.">
   <defs>
-    <image id="bild" href="${bild}" xlink:href="${bild}" width="1200" height="400" preserveAspectRatio="xMidYMid slice"/>
-    <clipPath id="rund"><rect width="1200" height="400" rx="18"/></clipPath>
-    <!-- Glanz nur auf den hellen Stellen: Schrift und Chromkante -->
-    <mask id="hell" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="400">
-      <use href="#bild" xlink:href="#bild" style="filter: grayscale(1) contrast(2.2) brightness(0.9)"/>
-    </mask>
-    <!-- Mint statt Weiss: die Schrift ist schon fast weiss, ein weisser Glanz
-         wäre darauf unsichtbar -->
+    <clipPath id="rund"><rect width="${B}" height="${H}" rx="20"/></clipPath>
+    <radialGradient id="nebelM" cx="0.18" cy="0.35" r="0.5"><stop offset="0" stop-color="${MINT}" stop-opacity="0.22"/><stop offset="1" stop-color="${MINT}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="nebelV" cx="0.85" cy="0.55" r="0.55"><stop offset="0" stop-color="${VIOLETT}" stop-opacity="0.28"/><stop offset="1" stop-color="${VIOLETT}" stop-opacity="0"/></radialGradient>
+    <!-- Horizont: ein riesiger dunkler Planet, nur seine Kante leuchtet -->
+    <linearGradient id="kante" x1="0" x2="1">
+      <stop offset="0" stop-color="${MINT}" stop-opacity="0"/>
+      <stop offset="0.3" stop-color="${MINT}"/>
+      <stop offset="0.7" stop-color="${VHELL}"/>
+      <stop offset="1" stop-color="${VIOLETT}" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="atmo" cx="0.5" cy="1" r="0.75"><stop offset="0.72" stop-color="${MINT}" stop-opacity="0"/><stop offset="0.86" stop-color="${MINT}" stop-opacity="0.18"/><stop offset="1" stop-color="${MINT}" stop-opacity="0"/></radialGradient>
+    <filter id="weich" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+    <linearGradient id="schrift" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe9e1"/></linearGradient>
     <linearGradient id="glanz" x1="0" x2="1">
       <stop offset="0" stop-color="${MINT}" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="${MINT}" stop-opacity="0.95"/>
+      <stop offset="0.5" stop-color="${MINT}"/>
       <stop offset="1" stop-color="${MINT}" stop-opacity="0"/>
     </linearGradient>
-    <radialGradient id="punkt"><stop offset="0" stop-color="#fff"/><stop offset="0.35" stop-color="${MINT}"/><stop offset="1" stop-color="${MINT}" stop-opacity="0"/></radialGradient>
+    <clipPath id="nameForm"><text x="${B / 2}" y="214" text-anchor="middle" font-family="${SANS}" font-size="124" font-weight="800" letter-spacing="-5">${name}</text></clipPath>
   </defs>
   <g clip-path="url(#rund)">
-    <use href="#bild" xlink:href="#bild"/>
-    ${funkeln(z, 46, 1200, 400, ["#ffffff", MINT, MINT], [[60, 95, 680, 290], [840, 30, 1150, 340]])}
-    <g mask="url(#hell)">
-      <rect x="-300" y="-100" width="220" height="600" fill="url(#glanz)" transform="skewX(-18)">
-        <animate attributeName="x" values="-400;1600" dur="3.2s" begin="0.6s;glanzE.end+3.5s" id="glanzE"/>
+    <rect width="${B}" height="${H}" fill="#06080c"/>
+    <rect width="${B}" height="${H}" fill="url(#nebelM)"/>
+    <rect width="${B}" height="${H}" fill="url(#nebelV)"><animate attributeName="opacity" values="0.7;1;0.7" dur="8s" repeatCount="indefinite"/></rect>
+    ${funkeln(z, 130, B, 300, ["#ffffff", "#ffffff", MINT, VHELL], [[300, 120, 900, 240]])}
+    ${schnuppe("s1", 1160, 30, -280, 120, 7, 2.4, MINT)}
+    ${schnuppe("s3", 420, 20, -220, 100, 11, 6.5, VHELL)}
+
+    <!-- Horizont -->
+    <ellipse cx="${B / 2}" cy="1580" rx="1500" ry="1290" fill="url(#atmo)"/>
+    <ellipse cx="${B / 2}" cy="1580" rx="1400" ry="1260" fill="#06080c"/>
+    <ellipse cx="${B / 2}" cy="1580" rx="1400" ry="1260" fill="none" stroke="url(#kante)" stroke-width="6" filter="url(#weich)" opacity="0.9"><animate attributeName="opacity" values="0.65;1;0.65" dur="5s" repeatCount="indefinite"/></ellipse>
+    <ellipse cx="${B / 2}" cy="1580" rx="1400" ry="1260" fill="none" stroke="url(#kante)" stroke-width="1.5"/>
+    <!-- Ein Licht wandert die Kante entlang -->
+    <circle r="3.5" fill="#fff" opacity="0">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="1.5s" path="M ${B / 2 - 340},${f(1580 - 1260 * Math.sqrt(1 - (340 / 1400) ** 2))} A 1400 1260 0 0 1 ${B / 2 + 340},${f(1580 - 1260 * Math.sqrt(1 - (340 / 1400) ** 2))}"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="6s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="${B / 2}" y="96" text-anchor="middle" font-family="${MONO}" font-size="15" letter-spacing="7" fill="${MINT}">HEY, ICH BIN PAUL</text>
+    <text x="${B / 2}" y="214" text-anchor="middle" font-family="${SANS}" font-size="124" font-weight="800" letter-spacing="-5" fill="url(#schrift)">${name}</text>
+    <g clip-path="url(#nameForm)">
+      <rect x="-300" y="80" width="260" height="160" fill="url(#glanz)" transform="skewX(-20)">
+        <animate attributeName="x" values="-300;1500" dur="2.8s" begin="0.8s;glanzE.end+4s" id="glanzE"/>
       </rect>
     </g>
-    <!-- Lichtpunkt, der die Linie vom Schriftzug zum L entlangläuft -->
-    <circle cy="206" r="9" fill="url(#punkt)" opacity="0">
-      <animate attributeName="cx" values="652;838" dur="1.6s" begin="1s;laufE.end+2.4s" id="laufE"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.2;0.75;1" dur="1.6s" begin="1s;laufE.end+2.4s"/>
-    </circle>
-    ${schnuppe("s1", 1180, 18, -260, 110, 7, 2.2, MINT)}
+    <text x="${B / 2}" y="262" text-anchor="middle" font-family="${MONO}" font-size="16" letter-spacing="4" fill="#8b949e">JAVA · KOTLIN · MINECRAFT · <tspan fill="${VHELL}">LOGSY NETWORK</tspan></text>
   </g>
 </svg>`;
 }
