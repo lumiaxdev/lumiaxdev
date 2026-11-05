@@ -1,5 +1,3 @@
-<img src="assets/banner.webp" width="100%" alt="LUMIAXDEV — Hey, ich bin Paul. Java, Kotlin und Minecraft." />
-
 <h3 align="center">Hi, ich bin Paul.</h3>
 
 <p align="center">
